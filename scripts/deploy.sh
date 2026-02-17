@@ -155,8 +155,6 @@ ensure_vm_running() {
 
     if [ "$status" == "RUNNING" ]; then
         echo "VM is already running."
-        echo "Waiting a few seconds for SSH to be ready..."
-        sleep 10
         return 0
     fi
 
@@ -186,8 +184,7 @@ ensure_vm_running() {
         return 1
     fi
     
-    echo "VM is now RUNNING. Waiting an additional 30 seconds for services to start."
-    sleep 30
+    echo "VM is now RUNNING."
 
     return 0
 }
@@ -591,8 +588,6 @@ deploy() {
                 echo "Error: Terraform deployment failed." >&2
                 return 1
             }
-            echo "Waiting 30 seconds for the new VM to boot and initialize SSH..."
-            sleep 30
         else
             echo "Skipping Terraform operations (not confirmed)."
         fi

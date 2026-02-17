@@ -5,9 +5,6 @@
 # .tfvars files should not be committed
 *.tfvars
 
-# Terraform provider lock file
-.terraform.lock.hcl
-
 # Terraform working directory
 .terraform/
 
