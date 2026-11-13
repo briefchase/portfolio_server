@@ -13,8 +13,6 @@ _GO_SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && p
 source "$_GO_SCRIPT_DIR/scripts/install.sh" || { echo "Error: Failed to source install.sh" >&2; exit 1; }
 source "$_GO_SCRIPT_DIR/scripts/config.sh" || { echo "Error: Failed to source config.sh" >&2; exit 1; }
 source "$_GO_SCRIPT_DIR/scripts/deploy.sh" || { echo "Error: Failed to source deploy.sh" >&2; exit 1; }
-source "$_GO_SCRIPT_DIR/scripts/utilities.sh" || { echo "Error: Failed to source utilities.sh" >&2; exit 1; }
-
 # Ensure all required tools are installed before proceeding
 check_all_dependencies || { echo "Error: Dependency check failed. Exiting." >&2; exit 1; }
 
