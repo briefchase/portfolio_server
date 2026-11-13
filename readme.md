@@ -1,7 +1,7 @@
-# Simple LAMP Server
+# Portfolio Website
 
 ## ABOUT:
-This will automatically prompt you with everything nessecary in order to deploy whatever is in public/ to a LAMP server on GCP. It also will automatically create certificates. Domain registration and record setting must be done manually. This is my website that contains links to my current projects.
+This repository contains the source code for my personal portfolio website (briefchase.com). It includes an automated deployment script (`go.sh`) that can deploy the contents of the `src/public/` directory to Firebase Hosting. The script handles minification, obfuscation, and deployment automatically.
 
 ## USAGE:
 

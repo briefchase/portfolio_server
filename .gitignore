@@ -1,19 +1,11 @@
-# Local terraform state
-*.tfstate
-*.tfstate.*
-
-# .tfvars files should not be committed
-*.tfvars
-
-# Terraform working directory
-.terraform/
-
 # Generated config
 config.json
 
-# Environment variables
-.env
+# Build output
+public/
 
-# Backup files
-*.tar.gz
-backup/
+# Firebase cache
+.firebase/
+
+# System files
+.DS_Store
