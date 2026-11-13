@@ -10,17 +10,13 @@
 _GO_SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Source scripts in a way that makes functions available in current shell
-source "$_GO_SCRIPT_DIR/scripts/config.sh" || { echo "Error: Failed to source config.sh" >&2; exit 1; }
-
-# Check for jq and install if not present
-if ! command -v jq &> /dev/null; then
-    echo "jq is not installed. Attempting to install..."
-    sudo apt-get install -y jq || { echo "Error: Failed to install jq. Please install it manually." >&2; exit 1; }
-fi
-
 source "$_GO_SCRIPT_DIR/scripts/install.sh" || { echo "Error: Failed to source install.sh" >&2; exit 1; }
+source "$_GO_SCRIPT_DIR/scripts/config.sh" || { echo "Error: Failed to source config.sh" >&2; exit 1; }
 source "$_GO_SCRIPT_DIR/scripts/deploy.sh" || { echo "Error: Failed to source deploy.sh" >&2; exit 1; }
 source "$_GO_SCRIPT_DIR/scripts/utilities.sh" || { echo "Error: Failed to source utilities.sh" >&2; exit 1; }
+
+# Ensure all required tools are installed before proceeding
+check_all_dependencies || { echo "Error: Dependency check failed. Exiting." >&2; exit 1; }
 
 #======================================
 # Main Menu & Script Execution

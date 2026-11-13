@@ -156,8 +156,13 @@ check_firebase_cli() {
     return 1
 }
 
-# Ensure jq is installed
-if ! command -v jq &> /dev/null; then
+# Function to check and install jq
+check_jq() {
+    if command -v jq &> /dev/null; then
+        echo "jq installation was verified."
+        return 0
+    fi
+    
     echo "jq is not installed. Attempting to install..."
     if command -v sudo &> /dev/null && command -v apt-get &> /dev/null; then
         sudo apt-get update && sudo apt-get install -y jq
@@ -169,12 +174,25 @@ if ! command -v jq &> /dev/null; then
         echo "Error: Could not install jq automatically. Please install it manually using your system's package manager." >&2
         return 1
     fi
+    
     if ! command -v jq &> /dev/null; then
         echo "Error: jq installation failed. Please install it manually." >&2
         return 1
     fi
     echo "jq has been successfully installed."
-fi
+    return 0
+}
+
+# Function to check all dependencies
+check_all_dependencies() {
+    echo "Checking required dependencies..."
+    check_jq || return 1
+    check_nodejs || return 1
+    check_firebase_cli || return 1
+    # Note: check_gcp is called during remote deployment configuration, not globally
+    echo "All dependencies verified."
+    return 0
+}
 
 # Allow calling functions directly if script is executed
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

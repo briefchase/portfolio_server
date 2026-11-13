@@ -18,15 +18,6 @@ CFG_LOCAL_HTTP_PORT="5000"
 CFG_DEPLOYMENT_NAME="portfolio"
 CFG_GCP_PROJECT_ID=""
 
-# Helper function to check for jq
-check_jq() {
-    if ! command -v jq &> /dev/null; then
-        echo "Error: jq is not installed. Please install jq to manage configuration." >&2
-        return 1
-    fi
-    return 0
-}
-
 # Load saved configuration
 load_config() {
     if ! check_jq; then return 1; fi

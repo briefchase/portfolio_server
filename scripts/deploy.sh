@@ -164,11 +164,6 @@ deploy() {
     echo "Type: $deployment_type"
     echo "Name: $deployment_name"
 
-    # Ensure required tools are installed
-    echo "Checking required tools..."
-    check_nodejs || { echo "Error: Node.js installation failed." >&2; return 1; }
-    check_firebase_cli || { echo "Error: Firebase CLI setup failed." >&2; return 1; }
-
     if [ "$deployment_type" == "remote" ]; then
         local project_id="$CFG_GCP_PROJECT_ID"
         [ -z "$project_id" ] && { echo "Error: GCP project ID is not set in config.json." >&2; return 1; }
